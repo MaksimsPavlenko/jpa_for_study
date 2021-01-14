@@ -29,7 +29,7 @@ public class Students {
     @Column(name = "rating")
     private int rating;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "student_course",
             joinColumns = @JoinColumn(name = "student_fk"),
             inverseJoinColumns = @JoinColumn(name = "course_fk"))

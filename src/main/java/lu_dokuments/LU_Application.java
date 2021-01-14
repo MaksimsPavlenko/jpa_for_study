@@ -1,7 +1,9 @@
 package lu_dokuments;
 
+import lu_dokuments.data_generation.TestDataGeneration;
 import lu_dokuments.model.JPQL;
 import lu_dokuments.model.Students;
+import lu_dokuments.select.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,17 +28,30 @@ public class LU_Application implements CommandLineRunner {
 	@Autowired
 	JPQL jpql;
 
+	@Autowired
+	TestDataGeneration generate;
+
+	@Autowired
+	Select select;
+
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
-//		jpql.generate_course();
-//		for(int i = 0; i<10; i++){
-//			jpql.generate_studentu_data();
-//		}
+//		generate.generate_studentu_data();
+//		generate.generate_course();
+
+//		select.select_all_courses();
+//		select.select_all_students();
+
+		select.selectTopStudent();
+		select.selectLowestRatingStudent();
+		select.selectStudentAverageRating();
+		select.selectStudentWithRating(344);
+		select.
 
 //		jpql.select_all_students();
 //		jpql.select_all_courses();
 //		jpql.innerJoinStudentAndCourse();
-		jpql.fetchInnerJoinStudentAndCourse();
+//		jpql.fetchInnerJoinStudentAndCourse();
 	}
 }
