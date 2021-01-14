@@ -43,11 +43,13 @@ public class LU_Application implements CommandLineRunner {
 //		select.select_all_courses();
 //		select.select_all_students();
 
-		select.selectTopStudent();
-		select.selectLowestRatingStudent();
-		select.selectStudentAverageRating();
-		select.selectStudentWithRating(344);
-		select.
+//		select.selectTopStudent();
+//		select.selectLowestRatingStudent();
+//		select.selectStudentAverageRating();
+//		select.selectStudentWithRating(344);
+//		select.selectStudentByCourseByFirstCharacter();
+
+		select.fetchInnerJoinStudentAndCourse();
 
 //		jpql.select_all_students();
 //		jpql.select_all_courses();
