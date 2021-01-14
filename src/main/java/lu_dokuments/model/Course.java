@@ -20,7 +20,7 @@ public class Course {
     @Column(name = "semester")
     private int semester;
 
-    @ManyToMany(mappedBy = "courseList", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "courseList", fetch = FetchType.LAZY)
     private List<Students> studentsList;
 
 

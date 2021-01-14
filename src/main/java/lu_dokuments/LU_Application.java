@@ -30,10 +30,13 @@ public class LU_Application implements CommandLineRunner {
 	@Transactional
 	public void run(String... args) throws Exception {
 //		jpql.generate_course();
-		jpql.generate_studentu_data();
+//		for(int i = 0; i<10; i++){
+//			jpql.generate_studentu_data();
+//		}
+
 //		jpql.select_all_students();
 //		jpql.select_all_courses();
 //		jpql.innerJoinStudentAndCourse();
-//		jpql.fetchInnerJoinStudentAndCourse();
+		jpql.fetchInnerJoinStudentAndCourse();
 	}
 }

@@ -41,10 +41,11 @@ public class JPQL {
     }
 
     public void select_all_courses() {
-        Query query = em.createQuery("select c from Course c");
-        List<Course> listOfCourses = query.getResultList();
 
-        for (Course s : listOfCourses) {
+        List<Course> query =  em.createQuery("select c from Course c").getResultList();
+//        List<Course> listOfCourses = query.getResultList();
+
+        for (Course s : query) {
             System.out.println(s.getCid()
                     + " "
                     + s.getSemester()
@@ -52,6 +53,7 @@ public class JPQL {
                     + s.getTitle()
             );
         }
+
     }
 
 
@@ -60,10 +62,19 @@ public class JPQL {
         System.out.println(iStart);
         System.out.println("students and course join start");
 
-        Query query = em.createQuery("SELECT s FROM Students s JOIN Course c");
-        List<Students> innerJoinStudentAndCourse = query.getResultList();
-        for (Students s : innerJoinStudentAndCourse) {
+        Query query = em.createQuery("SELECT s FROM Students s, Students_course sc JOIN Course  c where c.cid = sc.course_fk and s.sid = sc.student_fk");
+       // List<Students> innerJoinStudentAndCourse = query.getResultList();
+
+        for (Object ss : query.getResultList()) {
+            Students s = (Students) ss;
             for (Course c : s.getCourse()) {
+                if(c == null){
+                    System.out.println("pipaka pusta");
+                }
+                if(s == null){
+                    System.out.println("pikapika student");
+                }else{
+                System.out.println(s);
                 System.out.println(c.getCid()
                         + " "
                         + c.getSemester()
@@ -78,7 +89,7 @@ public class JPQL {
                         + " "
                         + s.getStudAplNr()
                 );
-            }
+            }}
         }
 
         System.out.println("students and course join end");
@@ -93,7 +104,7 @@ public class JPQL {
         System.out.println(fstart);
         System.out.println("students and course join start");
         Query query = em.createQuery("SELECT s FROM Students s JOIN FETCH Course c");
-
+int z=0;
         for (Object ss : query.getResultList()) {
             Students s = (Students) ss;
             for (Course c : s.getCourse()) {
@@ -111,8 +122,10 @@ public class JPQL {
                         + " "
                         + s.getStudAplNr()
                 );
+                z = z +1;
             }
         }
+        System.out.println(z);
 
         System.out.println("students and course join with FETCH end");
         String fend = new SimpleDateFormat("HH.mm.ss").format(new Date(System.currentTimeMillis()));
@@ -154,7 +167,7 @@ public class JPQL {
         System.out.println("start user generation");
         LocalDateTime dateTime = LocalDateTime.now();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             String symbols = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM";
             String randomtext = new Random().ints(11, 0, symbols.length())
                     .mapToObj(symbols::charAt)
@@ -178,6 +191,8 @@ public class JPQL {
             course.setCid(courseId);
             Set<Course> courseIdSet =  new HashSet<>();
             courseIdSet.add(course);
+
+
 
             String lname = "lname:"+ randomtext;
             String fname = "fname:"+ randomtext;
