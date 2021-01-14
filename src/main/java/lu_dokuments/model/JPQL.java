@@ -178,18 +178,7 @@ public class JPQL {
             course.setCid(courseId);
             Set<Course> courseIdSet =  new HashSet<>();
             courseIdSet.add(course);
-//            List<Object> courseIds = "SELECT c FROM Course c where c.cid = " + courseId;
 
-//            String courseIds = "SELECT c FROM Course c where c.cid = " + courseId;
-//            System.out.println("4");
-//            System.out.println("courseIds");
-//            System.out.println(courseIds);
-//
-//            Query query = em.createQuery(courseIds);
-//            System.out.println("5");
-//            System.out.println(query.getResultList());
-//            System.out.println(query.getResultList().size());
-            System.out.println(courseId);
             String lname = "lname:"+ randomtext;
             String fname = "fname:"+ randomtext;
             Students students = new Students();
@@ -208,7 +197,6 @@ public class JPQL {
         long diffInSeconds = java.time.Duration.between(dateTime, dateTime2).getSeconds();
         long diffInMilli = java.time.Duration.between(dateTime, dateTime2).toMillis();
         System.out.printf("\nDifference is  %d Seconds, %d Milli, and %d Nano\n\n",  diffInSeconds, diffInMilli, diffInNano );
-//        String end = new SimpleDateFormat("HH.mm.ss").format(new Date(System.currentTimeMillis()));
 
             System.out.println("end user generation");
 
