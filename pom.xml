@@ -74,12 +74,12 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.18</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.postgresql</groupId>-->
+<!--            <artifactId>postgresql</artifactId>-->
+<!--            <version>42.2.18</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -89,7 +89,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
 <!--                <configuration>-->
-<!--                    <jvmArguments>-Xmx5120m</jvmArguments>-->
+<!--                    <jvmArguments>-Xmx512m</jvmArguments>-->
 <!--                </configuration>-->
             </plugin>
 

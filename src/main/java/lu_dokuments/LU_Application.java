@@ -29,7 +29,6 @@ public class LU_Application implements CommandLineRunner {
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
-		String daw = new SimpleDateFormat("HH.mm.ss").format(new Date(System.currentTimeMillis()));
 //		jpql.generate_course();
 		jpql.generate_studentu_data();
 //		jpql.select_all_students();

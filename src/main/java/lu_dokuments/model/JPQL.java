@@ -1,15 +1,14 @@
 package lu_dokuments.model;
 
 
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
+import jdk.swing.interop.SwingInterOpUtils;
 import net.bytebuddy.utility.RandomString;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.SynchronizationType;
+import javax.persistence.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -60,6 +59,7 @@ public class JPQL {
         String iStart = new SimpleDateFormat("HH.mm.ss").format(new Date(System.currentTimeMillis()));
         System.out.println(iStart);
         System.out.println("students and course join start");
+
         Query query = em.createQuery("SELECT s FROM Students s JOIN Course c");
         List<Students> innerJoinStudentAndCourse = query.getResultList();
         for (Students s : innerJoinStudentAndCourse) {
@@ -93,8 +93,9 @@ public class JPQL {
         System.out.println(fstart);
         System.out.println("students and course join start");
         Query query = em.createQuery("SELECT s FROM Students s JOIN FETCH Course c");
-        List<Students> innerJoinStudentAndCourse = query.getResultList();
-        for (Students s : innerJoinStudentAndCourse) {
+
+        for (Object ss : query.getResultList()) {
+            Students s = (Students) ss;
             for (Course c : s.getCourse()) {
                 System.out.println(c.getCid()
                         + " "
@@ -153,7 +154,7 @@ public class JPQL {
         System.out.println("start user generation");
         LocalDateTime dateTime = LocalDateTime.now();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             String symbols = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM";
             String randomtext = new Random().ints(11, 0, symbols.length())
                     .mapToObj(symbols::charAt)
@@ -168,18 +169,27 @@ public class JPQL {
             max = 1000;
             int rating = ThreadLocalRandom.current().nextInt(min, max + 1);
 
-
             String generatedEmail = randomNum + randomtext + randomNum2 + "@" + "gmail.com";
             String generatedStudApl = randomtext + randomNum2 + randomNum;
             min = 1;
             max = 100;
             int courseId = ThreadLocalRandom.current().nextInt(min, max + 1);
+            Course course = new Course();
+            course.setCid(courseId);
+            Set<Course> courseIdSet =  new HashSet<>();
+            courseIdSet.add(course);
+//            List<Object> courseIds = "SELECT c FROM Course c where c.cid = " + courseId;
 
-            String courseIds = "SELECT c FROM Course c where c.cid = " + courseId;
-
-            Query query = em.createQuery(courseIds);
-            Set<Course> courseIdSet = new HashSet<>(query.getResultList());
-
+//            String courseIds = "SELECT c FROM Course c where c.cid = " + courseId;
+//            System.out.println("4");
+//            System.out.println("courseIds");
+//            System.out.println(courseIds);
+//
+//            Query query = em.createQuery(courseIds);
+//            System.out.println("5");
+//            System.out.println(query.getResultList());
+//            System.out.println(query.getResultList().size());
+            System.out.println(courseId);
             String lname = "lname:"+ randomtext;
             String fname = "fname:"+ randomtext;
             Students students = new Students();
@@ -190,11 +200,9 @@ public class JPQL {
             students.setRating(rating);
             students.setCourse(courseIdSet);
             em.persist(students);
+            System.out.println(courseIdSet);
 
         }
-        //maybe
-        em.clear();
-        em.close();
         LocalDateTime dateTime2 = LocalDateTime.now();
         int diffInNano = java.time.Duration.between(dateTime, dateTime2).getNano();
         long diffInSeconds = java.time.Duration.between(dateTime, dateTime2).getSeconds();
