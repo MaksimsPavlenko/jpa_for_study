@@ -28,19 +28,19 @@ public class Select {
         System.out.println("select_all_students started");
         LocalDateTime date1 =  LocalDateTime.now();
         List<Students> query = em.createQuery("select s from Students s").getResultList();
-        for (Students s : query) {
-            System.out.println(s.getSid()
-                    + " "
-                    + s.getFirstName()
-                    + " "
-                    + s.getLastName()
-                    + " "
-                    + s.getStudAplNr()
-                    + " "
-                    + s.getEmail()
-                    + " "
-            );
-        }
+//        for (Students s : query) {
+//            System.out.println(s.getSid()
+//                    + " "
+//                    + s.getFirstName()
+//                    + " "
+//                    + s.getLastName()
+//                    + " "
+//                    + s.getStudAplNr()
+//                    + " "
+//                    + s.getEmail()
+//                    + " "
+//            );
+//        }
         LocalDateTime date2 =  LocalDateTime.now();
         System.out.println("select_all_students completed");
         statistic.timeStatistic(date1,date2);
@@ -154,33 +154,33 @@ public class Select {
         System.out.println("innerJoinStudentAndCourse started");
         LocalDateTime date1 = LocalDateTime.now();
         Query query = em.createQuery("SELECT s FROM Students s, Students_course sc JOIN Course  c where c.cid = sc.course_fk and s.sid = sc.student_fk");
-        for (Object ss : query.getResultList()) {
-            Students s = (Students) ss;
-            for (Course c : s.getCourse()) {
-                if(c == null){
-                        System.out.println("course pusta");
-                    }
-                if(s == null){
-                        System.out.println("students pusta");
-                    }else{
-                        System.out.println(s);
-                        System.out.println(c.getCid()
-                                + " "
-                                + c.getSemester()
-                                + " "
-                                + c.getTitle()
-                                + " "
-                                + s.getFirstName()
-                                + " "
-                                + s.getLastName()
-                                + " "
-                                + s.getRating()
-                                + " "
-                                + s.getStudAplNr()
-                        );
-                    }
-            }
-        }
+//        for (Object ss : query.getResultList()) {
+//            Students s = (Students) ss;
+//            for (Course c : s.getCourse()) {
+//                if(c == null){
+//                        System.out.println("course pusta");
+//                    }
+//                if(s == null){
+//                        System.out.println("students pusta");
+//                    }else{
+//                        System.out.println(s);
+//                        System.out.println(c.getCid()
+//                                + " "
+//                                + c.getSemester()
+//                                + " "
+//                                + c.getTitle()
+//                                + " "
+//                                + s.getFirstName()
+//                                + " "
+//                                + s.getLastName()
+//                                + " "
+//                                + s.getRating()
+//                                + " "
+//                                + s.getStudAplNr()
+//                        );
+//                }
+//            }
+//        }
         LocalDateTime date2 =  LocalDateTime.now();
         System.out.println("Students and course join completed");
         statistic.timeStatistic(date1,date2);
