@@ -39,6 +39,9 @@ public class LU_Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 //		generate.generate_studentu_data();
 //		generate.generate_course();
+//		generate.generate_lector();
+//		generate.generate_parking();
+		generate.generate_assigned_task();
 
 //		select.select_all_courses();
 //		select.select_all_students();
@@ -49,11 +52,8 @@ public class LU_Application implements CommandLineRunner {
 //		select.selectStudentWithRating(344);
 //		select.selectStudentByCourseByFirstCharacter();
 
-		select.innerJoinStudentAndCourse();
+//		select.innerJoinStudentAndCourse();
 //		select.fetchInnerJoinStudentAndCourse();
-//		jpql.select_all_students();
-//		jpql.select_all_courses();
-//		jpql.innerJoinStudentAndCourse();
-//		jpql.fetchInnerJoinStudentAndCourse();
+
 	}
 }

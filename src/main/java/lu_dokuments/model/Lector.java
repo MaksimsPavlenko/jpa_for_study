@@ -1,9 +1,6 @@
 package lu_dokuments.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "lector")
@@ -11,6 +8,7 @@ public class Lector {
 
     @Id
     @Column(name = "iid")
+    @GeneratedValue(strategy =GenerationType.AUTO)
     private int iid;
 
     @Column(name = "first_name")
